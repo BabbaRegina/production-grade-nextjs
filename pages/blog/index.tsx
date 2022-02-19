@@ -32,8 +32,13 @@ Blog.defaultProps = {
   posts: []
 }
 
-export function getStaticProps () {
-  const postsCMS = postsFromCMS.published.map(post => {
+/**
+ * Need to get the posts from the
+ * fs and our CMS
+ */
+
+export function getStaticProps ({ preview = false } = {}) {
+  const postsCMS = (preview ? postsFromCMS.draft : postsFromCMS.published).map(post => {
     const { data } = matter(post)
     return data
   })
@@ -58,8 +63,3 @@ export function getStaticProps () {
 }
 
 export default Blog
-
-/**
- * Need to get the posts from the
- * fs and our CMS
- */

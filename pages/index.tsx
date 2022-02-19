@@ -46,10 +46,10 @@ Home.defaultProps = {
   },
 }
 
-export function getStaticProps() {
+export function getStaticProps({ preview = false } = {}) {
   return {
     props: {
-      content: home.published
+      content: preview ? home.draft : home.published
     }
   }
 }
